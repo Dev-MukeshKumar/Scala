@@ -38,30 +38,31 @@ object FractalTree extends App {
     buildRightBranch(buildLeftBranch(baseTree, Point(point.row - height, point.col - 1), height), Point(point.row - height, point.col + 1), height)
   }
 
-  def build(baseTree:Array[Array[Char]],point:Point,height:Int,n:Int):Array[Array[Char]] = {
-    if(n<1) baseTree
+  //build tree based on number of levels(n)
+  def buildTree(baseTree:Array[Array[Char]],point:Point,height:Int,n:Int):Array[Array[Char]] = {
+    if(n<1 || n>=6) baseTree
     else {
         //current tree build
         buildStem(baseTree, point, height)
         buildBranch(baseTree, point, height)
 
         //build left side trees
-        build(baseTree,Point(point.row - (height*2), point.col - height), height/2, n-1)
-
+        buildTree(baseTree,Point(point.row - (height*2), point.col - height), height/2, n-1)
+5
         //build right side trees
-        build(baseTree,Point(point.row - (height*2), point.col + height), height/2, n-1)
-      }
+        buildTree(baseTree,Point(point.row - (height*2), point.col + height), height/2, n-1)
+    }
   }
 
 
   //fractal tree execution starts
   val n = readInt()
-  require(n>=1 && n<=5)
-
-  build(Array.fill(63)(Array.fill(100)('_')), Point(62,49), 16, n)
+  if(n>=1 && n<=5)
+    buildTree(Array.fill(63)(Array.fill(100)('_')), Point(62,49), 16, n)
     .foreach(row => {
       row.foreach(c => print(c))
       println()
     })
-
+  else
+    println("please enter n with values 1 to 5")
 }
