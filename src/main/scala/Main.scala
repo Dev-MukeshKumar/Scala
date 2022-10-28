@@ -1,8 +1,16 @@
+import SuperDigit._
+import scala.io.StdIn.readInt
+
 object Main extends App{
-  val n = scala.io.StdIn.readInt()
-  val k = scala.io.StdIn.readInt()
 
-  val x = SuperDigit.repeater(n,k)
+  //read inputs from user
+  val n = readInt()
+  val k = readInt()
 
-  println(SuperDigit.superDigit(x))
+  val validateInputAndGenerateMessage = (n<1 , k<1) match {
+    case (false,false) => superDigit(repeater(n,k))
+    case _ => "Enter non negative inputs"
+  }
+
+  println(validateInputAndGenerateMessage)
 }

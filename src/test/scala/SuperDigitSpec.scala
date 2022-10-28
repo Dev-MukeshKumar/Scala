@@ -1,7 +1,7 @@
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-class SuperDigitTest extends AnyFlatSpec with Matchers{
+class SuperDigitSpec extends AnyFlatSpec with Matchers{
   //generateAppender test cases
   "generateAppender method" should "generate 10^x when valid integer given." in {
     SuperDigit.generateAppender(1) should be(10)
