@@ -1,7 +1,7 @@
 import SuperDigit._
 import scala.io.StdIn.readInt
 
-object Main extends App{
+object ExecuteSuperDigit extends App{
 
   //read inputs from user
   val n = readInt()
